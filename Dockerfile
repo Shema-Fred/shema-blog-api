@@ -1,19 +1,18 @@
-FROM strapi/base
+FROM node:13-alpine
 
-WORKDIR /srv/app
+RUN mkdir -p /usr/src/app
 
-COPY ./package.json ./
-COPY ./yarn.lock ./
-
-RUN yarn install
+WORKDIR /usr/src/app
 
 COPY . .
 
 ENV NODE_ENV production
 
+RUN yarn install
 
 EXPOSE 1337
 
-RUN chmod a+x /srv/app/run.sh
+RUN chmod a+x /usr/src/app/run.sh
 
-CMD ["/srv/app/run.sh"]
+
+CMD ["/usr/src/app/run.sh"]
