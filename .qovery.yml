@@ -1,0 +1,21 @@
+---
+application:
+  name: "shema-blog-api"
+  project: "shema-blog-api"
+  organization: "QoveryCommunity"
+  dockerfile: ./Dockerfile
+  storage:
+  - name: "data"
+    size: "10"
+    type: "ssd"
+    mount_point: "/mnt/data"
+databases:
+- type: "POSTGRESQL"
+  name: "shema-blog-data"
+  version: "12"
+routers:
+- name: "main-shema-blog-api"
+  routes:
+  - application_name: "shema-blog-api"
+    paths:
+    - "/*"
